@@ -1,0 +1,17 @@
+﻿$PBExportHeader$p_pdfextractor_exe.srj
+EXE:pbpdfextractor.exe,,0,1,1,0,C:\Program Files (x86)\Appeon\Common\PowerBuilder\Runtime 22.2.0.3356
+CMP:0,0,0,3,0,0,1
+COM:RSRSYSTEM
+DES:Appeon Power Builder 2022 Product File 64Bits
+CPY:Ramón San Félix Ramón
+PRD:PdfExtractor2022
+PVS:2022.3.3356.1
+PVN:2022,3,3356,2
+FVS:2022.3.3356.1
+FVN:2022,3,3356,2
+MAN:0,asInvoker,0
+PBD:pbpdfextractor.pbl,,1
+OBJ:C:\proyecto pw2022\Blog\PowerBuilder\pbPdfExtractor\pbpdfextractor.pbl,w_main,w
+OBJ:C:\proyecto pw2022\Blog\PowerBuilder\pbPdfExtractor\pbpdfextractor.pbl,pbpdfextractor,a
+OBJ:C:\proyecto pw2022\Blog\PowerBuilder\pbPdfExtractor\pbpdfextractor.pbl,nvo_pdfextractor,u
+OBJ:C:\proyecto pw2022\Blog\PowerBuilder\pbPdfExtractor\pbpdfextractor.pbl,gf_cambiar_extension,f

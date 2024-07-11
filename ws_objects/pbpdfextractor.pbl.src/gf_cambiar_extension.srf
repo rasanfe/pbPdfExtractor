@@ -1,0 +1,23 @@
+﻿$PBExportHeader$gf_cambiar_extension.srf
+global type gf_cambiar_extension from function_object
+end type
+
+forward prototypes
+global function string gf_cambiar_extension (string as_source, string as_newformat)
+end prototypes
+
+global function string gf_cambiar_extension (string as_source, string as_newformat);String ls_oldFormat
+Long ll_rtn
+Integer li_FormatLen
+String ls_newFileName
+
+li_FormatLen = Len(as_source) - LastPos(as_source, ".") + 1
+
+ls_oldFormat = lower(mid(as_source, LastPos(as_source, "."),  li_FormatLen))
+
+ls_newFileName = replace(as_source, pos(as_source, ls_oldFormat), li_FormatLen, as_newformat)
+
+RETURN ls_newFileName
+	
+end function
+
