@@ -1,0 +1,17 @@
+﻿EXE:pbpdfextractor.exe,,0,1,1,0,C:\Program Files (x86)\Appeon\Common\PowerBuilder\Runtime 25.0.0.3683
+CMP:0,0,0,3,0,0,1
+COM:RSRSYSTEM
+DES:Appeon Power Builder 2022 Product File 64Bits
+CPY:Ramón San Félix Ramón
+PRD:PdfExtractor2025
+PVS:2025.1.3683.4
+PVN:2025,1,3683,4
+FVS:2025.1.3683.4
+FVN:2025,1,3683,4
+MAN:0,asInvoker,0
+PBD:pbpdfextractor.pbl,,1
+PBD:dotnet.pbl,,1
+OBJ:C:\proyecto pw2025\Blog\PowerBuilder\pbPdfExtractor\pbpdfextractor.pbl,pbpdfextractor,a
+OBJ:C:\proyecto pw2025\Blog\PowerBuilder\pbPdfExtractor\pbpdfextractor.pbl,gf_cambiar_extension,f
+OBJ:C:\proyecto pw2025\Blog\PowerBuilder\pbPdfExtractor\dotnet.pbl,nvo_pdfextractor,u
+OBJ:C:\proyecto pw2025\Blog\PowerBuilder\pbPdfExtractor\pbpdfextractor.pbl,w_main,w
