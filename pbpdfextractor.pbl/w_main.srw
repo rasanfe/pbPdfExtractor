@@ -74,6 +74,7 @@ public function double wf_perfstart ()
 public function double wf_perfstop (double adbl_start)
 public subroutine wf_version (statictext ast_version, statictext ast_patform)
 public function boolean wf_writefile (string as_filename, blob ab_data)
+public function boolean wf_control_dependencias ()
 end prototypes
 
 public function double wf_perfstart ();Double ldbl_start
@@ -149,6 +150,37 @@ FileClose(li_file)
 RETURN TRUE
 end function
 
+public function boolean wf_control_dependencias ();// --------------------------------------------------------------------------------------
+// SCRIPT:     wf_control_dependencias
+//
+// PURPOSE:    Comprueba que el ensamblado principal y todas sus dependencias .NET
+//             (itext7 9.x + Microsoft.Extensions + System.Security) estan presentes
+//             en DotNet\PdfExtractor\ ANTES de usar la clase importada con el .NET DLL
+//             Importer. Da un mensaje claro indicando el fichero que falta, en vez del
+//             error generico de carga del assembly.
+//             La lista se toma de PdfExtractor.deps.json (DLLs de runtime).
+//
+// RETURN:     True = estan todas, False = falta alguna (ya avisada por MessageBox)
+// --------------------------------------------------------------------------------------
+String ls_dir, ls_archivos[]
+Int li_idx, li_total
+
+ls_dir = gs_dir + "DotNet\PdfExtractor\"
+
+ls_archivos[] = {"PdfExtractor.dll", "itext.barcodes.dll", "itext.bouncy-castle-connector.dll", "itext.commons.dll", "itext.forms.dll", "itext.io.dll", "itext.kernel.dll", "itext.layout.dll", "itext.pdfa.dll", "itext.pdfua.dll", "itext.sign.dll", "itext.styledxmlparser.dll", "itext.svg.dll", "Microsoft.DotNet.PlatformAbstractions.dll", "Microsoft.Extensions.DependencyInjection.Abstractions.dll", "Microsoft.Extensions.DependencyInjection.dll", "Microsoft.Extensions.DependencyModel.dll", "Microsoft.Extensions.Logging.Abstractions.dll", "Microsoft.Extensions.Logging.dll", "Microsoft.Extensions.Options.dll", "Microsoft.Extensions.Primitives.dll", "System.Security.Cryptography.Pkcs.dll", "System.Security.Cryptography.Xml.dll"}
+
+li_total = UpperBound(ls_archivos[])
+
+FOR li_idx = 1 TO li_total
+	IF NOT FileExists(ls_dir + ls_archivos[li_idx]) THEN
+		MessageBox("Atención", "¡ Falta la dependencia .NET requerida !~r~n~r~n" + ls_dir + ls_archivos[li_idx], Exclamation!)
+		RETURN FALSE
+	END IF
+NEXT
+
+RETURN TRUE
+end function
+
 on w_main.create
 this.cb_pdf_to_blob_to_text=create cb_pdf_to_blob_to_text
 this.st_msg=create st_msg
@@ -217,6 +249,8 @@ String ls_filename, ls_txt, ls_error, ls_pdf
 blob lblb_text
 boolean lb_write
 nvo_pdfextractor ln_pdf
+
+If Not wf_control_dependencias() Then Return
 
 ln_pdf = CREATE nvo_pdfextractor
 
@@ -292,6 +326,8 @@ event clicked;Double ldbl_start, ldbl_elapsed
 integer li_pages
 String ls_filename, ls_txt, ls_error, ls_pdf
 nvo_pdfextractor ln_pdf
+
+If Not wf_control_dependencias() Then Return
 
 ln_pdf = CREATE nvo_pdfextractor
 
